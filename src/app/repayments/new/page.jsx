@@ -14,8 +14,18 @@ export default function LoanRepayment() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
     const router = useRouter();
-    const storageData = localStorage.getItem('user');
-    const user = JSON.parse(storageData);
+    const [user, setUser ]= useState('');
+
+    useEffect(() => {
+        // Get user data from localStorage
+        if (typeof window !== 'undefined') {
+            const user_data = localStorage.getItem('user');
+            if (user_data) {
+                const parsedData = JSON.parse(user_data);
+                setUser(parsedData);
+            }
+        }
+    },[])
 
     useEffect(() => {
         fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/loans/${user.user_id}`)
