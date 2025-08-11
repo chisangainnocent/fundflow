@@ -12,7 +12,7 @@ export default function Summary() {
     useEffect(() => {
         async function fetchSummary() {
             try {
-                const res = await fetch("http://localhost:8000/api/summary");
+                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/summary`);
                 if (!res.ok) throw new Error("Failed to fetch summary data");
                 const json = await res.json();
                 setData(json);
