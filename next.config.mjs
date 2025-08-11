@@ -1,7 +1,13 @@
-/** @type {import('next').NextConfig} */
+/** @type {import('next').NextConfig} */ 
 const nextConfig = {
-    allowedDevOrigins: ['local-origin.dev', '*.local-origin.dev','10.171.69.211'],
+  async rewrites() {
+    return [
+      {
+        source: '/api/:path*',
+        destination: process.env.API_URL + '/:path*', // Example: https://demo.pangaeaaddcapital.co.zm/api/:path*
+      },
+    ]
+  }
 };
-
 
 export default nextConfig;
